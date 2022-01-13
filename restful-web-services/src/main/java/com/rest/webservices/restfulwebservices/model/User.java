@@ -37,11 +37,6 @@ public class User {
 	public String toString() {
 		return "UserBean [id=" + id + ", name=" + name + ", dateOfBirth=" + dateOfBirth + "]";
 	}
-	
-	
-	
-	
-	
-	
+	public User() {}
 
 }
