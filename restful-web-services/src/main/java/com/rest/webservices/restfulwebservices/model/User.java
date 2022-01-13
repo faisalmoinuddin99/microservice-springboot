@@ -1,8 +1,8 @@
-package com.rest.webservices.restfulwebservices;
+package com.rest.webservices.restfulwebservices.model;
 
 import java.util.Date;
 
-public class UserBean {
+public class User {
 	
 	private Integer id ;
 	private String name ;
@@ -27,7 +27,7 @@ public class UserBean {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
-	public UserBean(Integer id, String name, Date dateOfBirth) {
+	public User(Integer id, String name, Date dateOfBirth) {
 		super();
 		this.id = id;
 		this.name = name;

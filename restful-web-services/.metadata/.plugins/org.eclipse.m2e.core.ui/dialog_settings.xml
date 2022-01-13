@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="/home/faisal/eclipse-workspace/Revision-Spring-Boot/microservice-springboot/restful-web-services"/>
 			<item value="/home/faisal/eclipse-workspace/Revision-Spring-Boot/restful-web-services"/>
 		</list>
 		<list key="projectNameTemplate">
