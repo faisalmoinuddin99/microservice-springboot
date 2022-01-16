@@ -1,5 +1,6 @@
 package com.rest.webservices.restfulwebservices.controller;
 
+import com.rest.webservices.restfulwebservices.exception.UserNotFoundException;
 import com.rest.webservices.restfulwebservices.model.User;
 import com.rest.webservices.restfulwebservices.services.UserDAOService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,12 @@ public class UserController {
 
     @GetMapping(path = "/users/{id}")
     public User findByUserId(@PathVariable int id){
-        return userDAOService.findOne(id) ;
+
+        User user =  userDAOService.findOne(id) ;
+        if (user == null){
+            throw  new UserNotFoundException("id " + id)  ;
+        }
+        return user ;
     }
 
     //CREATED
