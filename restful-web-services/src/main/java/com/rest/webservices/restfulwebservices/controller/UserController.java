@@ -20,6 +20,7 @@ public class UserController {
 
     @GetMapping(path = "/users")
     public List<User> findAllUsers(){
+
         return userDAOService.findAll() ;
     }
 
@@ -32,7 +33,14 @@ public class UserController {
         }
         return user ;
     }
-
+    @DeleteMapping("/users/{id}")
+    public User deleteUserById(@PathVariable int id){
+        User user = userDAOService.deleteById(id) ;
+        if (user == null){
+            throw new UserNotFoundException("id " + id) ;
+        }
+        return user ;
+    }
     //CREATED
     // input --- details of user
     // output --- CREATED & Return the created URI
