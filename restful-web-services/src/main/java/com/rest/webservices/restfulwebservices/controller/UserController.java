@@ -4,6 +4,8 @@ import com.rest.webservices.restfulwebservices.exception.UserNotFoundException;
 import com.rest.webservices.restfulwebservices.model.User;
 import com.rest.webservices.restfulwebservices.services.UserDAOService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -26,13 +28,19 @@ public class UserController {
     }
 
     @GetMapping(path = "/users/{id}")
-    public User findByUserId(@PathVariable int id){
+    public EntityModel<User> findByUserId(@PathVariable int id){
 
         User user =  userDAOService.findOne(id) ;
         if (user == null){
             throw  new UserNotFoundException("id " + id)  ;
         }
-        return user ;
+        EntityModel<User> model = EntityModel.of(user) ;
+        WebMvcLinkBuilder linkToUsers = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).findAllUsers()) ;
+    /*
+    HATEOAS : This framework return data + action [ links ]
+     */
+        model.add(linkToUsers.withRel("all-users")) ;
+        return model;
     }
     @DeleteMapping("/users/{id}")
     public User deleteUserById(@PathVariable int id){
